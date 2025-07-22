@@ -1,24 +1,20 @@
 <?php
 
+use App\Http\Controllers\ListingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
 
-//Chamando todas as Listagens
-//Criando uma rota e chamando o metodo statico get
-Route::get('/', function () {
-    //chamando a view listenings
-    return view('listings', [
-        //enviando os dados do heading e de todas as listagems
-        'heading' => 'Latest Listings',
-        'listings' => Listing::all()
-    ]);
-});
+//Rotas padrões de recursos
+// index - Mostra todos as Listagens
+// show - Mostra uma listagem
+// create - Cria uma listagem
+// store - Armazena uma listagem
+// edit - Busca uma listagem e edita
+// update - Atualza uma listagem
+// destroy - Deleta uma listagem
 
-//Chamando uma Listagem
-Route::get('/listing', function (){
-    return view('listings', [
-        'heading' => 'One Listing',
-        'listing' => Listing::find(1)
-    ]);
-});
+// Rotas Listagem
+Route::get('/', [ListingController::class, 'index']);
+Route::get('/listings/{listing}', [ListingController::class, 'show']);
+
